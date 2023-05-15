@@ -7,7 +7,9 @@ public class BindRWStructuredBuffer : MonoBehaviour
     void Awake()
     {
         buffer = new GraphicsBuffer (GraphicsBuffer.Target.Structured | GraphicsBuffer.Target.CopySource , GraphicsBuffer.UsageFlags.None, 16*16, 24*4);
+#if UNITY_EDITOR
         Graphics.SetRandomWriteTarget(1, buffer, true);
+#endif
         GetComponent<Renderer>().material.SetBuffer("_MyRWStructuredBuffer", buffer);
     }
 
